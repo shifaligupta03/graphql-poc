@@ -8,8 +8,27 @@ type HackerNewsItem {
     time: Int
     deleted: Boolean
 }
+
+type User{
+    id: ID
+    firstName: String!
+    lastName: String!
+    email: String
+    
+}
 type Query {
    item: HackerNewsItem
+   user: User
+   users:[User]
+}
+input UserInput{
+    id: ID
+    firstName: String!
+    lastName: String!
+    email: String
+}
+type Mutation{
+    createUser(input: UserInput) : User
 }
 `);
 
