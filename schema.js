@@ -49,6 +49,6 @@ type Mutation{
 `;
 
 
-const schema = makeExecutableSchema(typeDefs, resolvers);
+const schema = makeExecutableSchema({typeDefs, resolvers});
 
-export default {schema};
+export default schema;

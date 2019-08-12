@@ -9,7 +9,8 @@ export const resolvers = {
              text: 'Item text'
             }
          },
-         getUser: ({id})=>{
+         getUser: (_, {id})=>{
+             
              return users.find(user=> user.id === id)
          },
          users:()=>{
@@ -17,7 +18,7 @@ export const resolvers = {
          }
     },
     Mutation:{
-        createUser:({input})=>{
+        createUser:(_,{input}, context, info)=>{
             user=input;
             users.push(user);
             return user;
