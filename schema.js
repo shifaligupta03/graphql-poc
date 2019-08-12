@@ -5,6 +5,7 @@ const typeDefs = `
 type HackerNewsItem {
     id: String
     text: String
+    title: String
     timeISO: String
     time: Int
     deleted: Boolean
@@ -39,12 +40,14 @@ input UserInput{
 input HackerNewsItemInput {
     id: String
     text: String
+    title: String
     timeISO: String
     time: Int
     deleted: Boolean
 }
 type Mutation{
     createUser(input: UserInput) : User
+    createItem(input: HackerNewsItemInput): HackerNewsItem
 }
 `;
 
