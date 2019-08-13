@@ -20,7 +20,7 @@ type User{
     items: [HackerNewsItem]
 }
 type Query {
-   item: HackerNewsItem
+   getItem(id:ID!): HackerNewsItem
    getUser(id:ID): User
    users:[User]
 }
@@ -35,7 +35,7 @@ input UserInput{
     lastName: String!
     email: String
     gender: Gender
-    items: [HackerNewsItemInput]
+    items: [ID!]
 }
 input HackerNewsItemInput {
     id: String
@@ -47,6 +47,8 @@ input HackerNewsItemInput {
 }
 type Mutation{
     createUser(input: UserInput) : User
+    updateUser(input: UserInput) : User
+    deleteUser(id: ID) : User
     createItem(input: HackerNewsItemInput): HackerNewsItem
 }
 `;

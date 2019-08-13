@@ -2,13 +2,11 @@
 const users=[];
 let user={};
 import Item from'./models/item';
+import User from'./models/user';
 export const resolvers = {
     Query:{
-        item: ()=> {
-            return {
-             id:'123123',
-             text: 'Item text'
-            }
+        getItem: async(_, {id}) => {
+           return await Item.findOne({_id: id});
          },
          getUser: (_, {id})=>{
              
@@ -19,11 +17,17 @@ export const resolvers = {
          }
     },
     Mutation:{
-        createUser:(_,{input}, context, info)=>{
-            user=input;
-            users.push(user);
-            return user;
+        createUser:async(_,{input})=>{
+           const user = await User.create(input);
+           return await User.findOne({_id:user.id}).populate('items');
         },
+        updateUser:async(_,{input})=>{
+            const user = await User.create(input);
+            return await User.findOneAndUpdate({_id:user.id}).populate('items');
+         },
+         deleteUser:async(_,{id})=>{
+            return await User.findByIdAndRemove({_id:id}).populate('items');
+         },
         createItem:(_,{input})=>{
             return Promise.resolve(Item.create(input))
         }
